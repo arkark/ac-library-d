@@ -1,0 +1,11 @@
+{
+  "name": "ac-library-d",
+  "description": "ac-library in D language.",
+  "authors": [
+    "ark"
+  ],
+  "homepage": "https://github.com/arkark/ac-library-d",
+  "license": "public domain",
+  "copyright": "Copyright © 2020, ark",
+  "targetPath": "target"
+}
