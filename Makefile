@@ -29,7 +29,3 @@ format:
 		--template_constraint_style=conditional_newline \
 		--keep_line_breaks=true \
 		$(SRC_DIRECTORY)
-
-.PHONY: combine
-combine:
-	@echo "WIP"
