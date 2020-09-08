@@ -2,7 +2,30 @@
 
 :construction: WIP :construction:
 
-ac-library in D language.
+An ac-library implementation in D language.
+
+- Data Structures
+    - [ ] fenwicktree
+    - [ ] segtree
+    - [ ] lazysegtree
+    - [ ] string
+- Math
+    - [ ] math
+    - [ ] convolution
+    - [ ] modint
+- Graphs
+    - [ ] dsu
+    - [ ] maxflow
+    - [ ] mincostflow
+    - [x] scc
+    - [ ] twosat
+- Dependencies
+    - [ ] internal bit
+    - [ ] internal math
+    - [ ] internal queue
+    - [x] internal scc
+    - [ ] internal type traits
+    - [x] internal array (not in ac-library)
 
 ## Commands
 
@@ -16,7 +39,7 @@ Bundle files dependent on `{name}.d`:
 $ ./bundle src/acl/{name}.d > output.d
 ```
 
-Browse docs of ac-library:
+Browse docs for ac-library:
 ```fish
 $ make browse-docs
 ```
