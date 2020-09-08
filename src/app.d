@@ -36,7 +36,7 @@ string[] bundle(string path, bool[string] loadedPaths) {
       lines ~= bundle(next, loadedPaths);
     }
   }
-  return lines.find!(line => !line.empty).array;
+  return lines.find!"!a.empty".array;
 }
 
 string[] loadLines(string path) {
