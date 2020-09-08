@@ -103,6 +103,8 @@ static struct InternalArray {
       return typeof(this)(data, size, beginIndex, endIndex, true);
     }
 
+    alias dup = save;
+
     // xs ~= value
     typeof(this) opOpAssign(string op)(T value) if (op == "~") {
       this.insertBack(value);
