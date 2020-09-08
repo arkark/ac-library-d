@@ -1,5 +1,7 @@
 module acl.internal.scc;
 
+import acl.internal.array;
+
 static struct InternalScc {
 
   // Strongly Connected Components
@@ -36,7 +38,7 @@ static struct InternalScc {
       auto g = Csr!Edge(_n, edges);
       long nowOrd = 0;
       long groupNum = 0;
-      long[] visited;
+      InternalArray.Array!long visited;
       visited.reserve(_n);
       long[] low = new long[_n];
       long[] ord = new long[_n];
@@ -52,7 +54,7 @@ static struct InternalScc {
             dfs(toV);
             low[v] = min(low[v], low[toV]);
           } else {
-            low[v] = min(low[v], ord[v]);
+            low[v] = min(low[v], ord[toV]);
           }
         }
         if (low[v] == ord[v]) {
@@ -79,14 +81,14 @@ static struct InternalScc {
       return tuple(groupNum, ids);
     }
 
-    long[][] scc() {
+    InternalArray.Array!long[] scc() {
       auto ids = sccIds();
       long groupNum = ids[0];
       long[] counts = new long[groupNum];
       foreach (x; ids[1]) {
         counts[x]++;
       }
-      long[][] groups = new long[][groupNum];
+      auto groups = new InternalArray.Array!long[groupNum];
       foreach (i; 0 .. groupNum) {
         groups[i].reserve(counts[i]);
       }
@@ -104,12 +106,12 @@ static struct InternalScc {
 
       this(long n, Tuple!(long, E)[] edges) {
         start = new long[n + 1];
-        elist = new E[n];
+        elist = new E[edges.length];
         foreach (e; edges) {
           start[e[0] + 1]++;
         }
         foreach (i; 1 .. n + 1) {
-          start[i] += start[i + 1];
+          start[i] += start[i - 1];
         }
         auto counter = start.dup;
         foreach (e; edges) {
