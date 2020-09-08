@@ -18,7 +18,7 @@ An ac-library implementation in D language.
     - [ ] maxflow
     - [ ] mincostflow
     - [x] scc
-    - [ ] twosat
+    - [x] twosat
 - Dependencies
     - [ ] internal bit
     - [ ] internal math
