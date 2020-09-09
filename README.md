@@ -1,6 +1,8 @@
 # ac-library-d
 
 [![](https://github.com/arkark/ac-library-d/workflows/D/badge.svg)](https://github.com/arkark/ac-library-d/actions)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![](https://tokei.rs/b1/github/arkark/ac-library-d)](https://github.com/arkark/ac-library-d)
 
 :construction: WIP :construction:
 
