@@ -21,7 +21,7 @@ Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
     - [ ] modint
 - Graphs
     - [ ] dsu
-    - [ ] maxflow
+    - [x] maxflow
     - [ ] mincostflow
     - [x] scc
     - [x] twosat
