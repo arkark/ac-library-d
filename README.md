@@ -28,7 +28,7 @@ Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
 - Dependencies
     - [ ] internal bit
     - [ ] internal math
-    - [ ] internal queue
+    - ~~[ ] internal queue~~ (unnecessary)
     - [x] internal scc
     - [ ] internal type traits
     - [x] internal array (not in ac-library)
