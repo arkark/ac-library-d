@@ -22,7 +22,7 @@ Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
 - Graphs
     - [ ] dsu
     - [x] maxflow
-    - [ ] mincostflow
+    - [x] mincostflow
     - [x] scc
     - [x] twosat
 - Dependencies
