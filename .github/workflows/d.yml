@@ -1,0 +1,97 @@
+name: D
+
+# Info:
+#   https://atcoder.jp/contests/practice2/rules
+#   AtCoder uses DMD 2.091.0, LDC 1.20.1, and GDC 9.2.1.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-dmd-and-ldc:
+    name: Tests for DMD and LDC
+    strategy:
+      matrix:
+        compiler:
+          - dmd-latest
+          - ldc-latest
+          - dmd-2.091.0 # for AtCoder
+          - ldc-1.20.1 # for AtCoder
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install D compiler
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+      - name: Run tests
+        run: dub -q test
+      - run: mkdir output
+      - name: Bundle
+        run: |-
+          find src/acl/* \
+            -maxdepth 0 \
+            -type f \
+            -printf "%f\n" \
+          | xargs -I{} sh -c \
+              "./bundle.sh src/acl/{} > output/{}"
+      - name: Test bundled files
+        run: |-
+          find output -type f \
+          | xargs -I{} \
+              rdmd -main -unittest {}
+
+  dfmt:
+    name: dfmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install D compiler
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: dmd-latest
+      - name: Run tests
+        run: dub -q test
+      - name: Install dfmt
+        run: dub fetch --version='~master' dfmt && dub build dfmt
+      - name: Run dfmt
+        run: |-
+          find src -type f \
+          | xargs -I{} sh -c " \
+              dub run -q dfmt -- \
+                --indent_size=2 \
+                --brace_style=otbs \
+                --template_constraint_style=conditional_newline \
+                --keep_line_breaks=true \
+                {} \
+              | diff {} - \
+            "
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [test-dmd-and-ldc, dfmt]
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install D compiler
+        uses: dlang-community/setup-dlang@v1
+        with:
+          compiler: dmd-latest
+      - run: mkdir output
+      - name: Bundle
+        run: |-
+          find src/acl/* \
+            -maxdepth 0 \
+            -type f \
+            -printf "%f\n" \
+          | xargs -I{} sh -c \
+              "./bundle.sh src/acl/{} > output/{}"
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.5.9
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: bundle
+          FOLDER: output
+          CLEAN: true
