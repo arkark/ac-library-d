@@ -1,5 +1,7 @@
 # ac-library-d
 
+[![](https://github.com/arkark/ac-library-d/workflows/D/badge.svg)](https://github.com/arkark/ac-library-d/actions)
+
 :construction: WIP :construction:
 
 An ac-library implementation in D language.
