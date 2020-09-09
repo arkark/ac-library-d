@@ -29,7 +29,7 @@ jobs:
         run: dub -q test
 
   dfmt:
-    name: Tests for DMD and LDC
+    name: dfmt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -44,14 +44,14 @@ jobs:
       - name: Run dfmt
         run: >-
           find src -type f
-          | xargs -I{} sh -c "
-              dub run -q --build=release dfmt --
-                --indent_size=2
-                --brace_style=otbs
-                --template_constraint_style=conditional_newline
-                --keep_line_breaks=true
-                {}
-              | diff {} -
+          | xargs -I{} sh -c " \
+              dub run -q --build=release dfmt -- \
+                --indent_size=2 \
+                --brace_style=otbs \
+                --template_constraint_style=conditional_newline \
+                --keep_line_breaks=true \
+                {} \
+              | diff {} - \
             "
 
   deploy:
@@ -73,7 +73,7 @@ jobs:
             -type f
             -printf "%f\n"
           | xargs -I{} sh -c
-            "./bundle.sh src/acl/{} > output/{}"
+              "./bundle.sh src/acl/{} > output/{}"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
