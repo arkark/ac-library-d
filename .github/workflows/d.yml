@@ -42,6 +42,8 @@ jobs:
           | xargs -I{} \
               rdmd -main -unittest {}
 
+  # test-gdc: # TODO
+
   dfmt:
     name: dfmt
     runs-on: ubuntu-latest
