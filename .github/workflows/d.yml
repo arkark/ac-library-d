@@ -42,8 +42,8 @@ jobs:
       - name: Install dfmt
         run: dub fetch --version='~master' dfmt && dub build dfmt
       - name: Run dfmt
-        run: >-
-          find src -type f
+        run: |-
+          find src -type f \
           | xargs -I{} sh -c " \
               dub run -q dfmt -- \
                 --indent_size=2 \
@@ -67,12 +67,12 @@ jobs:
           compiler: dmd-latest
       - run: mkdir output
       - name: Bundle
-        run: >-
-          find src/acl/*
-            -maxdepth 0
-            -type f
-            -printf "%f\n"
-          | xargs -I{} sh -c
+        run: |-
+          find src/acl/* \
+            -maxdepth 0 \
+            -type f \
+            -printf "%f\n" \
+          | xargs -I{} sh -c \
               "./bundle.sh src/acl/{} > output/{}"
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.9
