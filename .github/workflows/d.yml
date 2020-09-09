@@ -40,12 +40,12 @@ jobs:
       - name: Run tests
         run: dub -q test
       - name: Install dfmt
-        run: dub fetch --version='~master' dfmt && dub build --build=release dfmt
+        run: dub fetch --version='~master' dfmt && dub build dfmt
       - name: Run dfmt
         run: >-
           find src -type f
           | xargs -I{} sh -c " \
-              dub run -q --build=release dfmt -- \
+              dub run -q dfmt -- \
                 --indent_size=2 \
                 --brace_style=otbs \
                 --template_constraint_style=conditional_newline \
