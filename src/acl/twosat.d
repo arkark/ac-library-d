@@ -1,4 +1,4 @@
-module acl.two_sat;
+module acl.twosat;
 
 import acl.internal.scc;
 
