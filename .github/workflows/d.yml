@@ -27,6 +27,20 @@ jobs:
           compiler: ${{ matrix.compiler }}
       - name: Run tests
         run: dub -q test
+      - run: mkdir output
+      - name: Bundle
+        run: |-
+          find src/acl/* \
+            -maxdepth 0 \
+            -type f \
+            -printf "%f\n" \
+          | xargs -I{} sh -c \
+              "./bundle.sh src/acl/{} > output/{}"
+      - name: Test bundled files
+        run: |-
+          find output -type f \
+          | xargs -I{} \
+              rdmd -main -unittest {}
 
   dfmt:
     name: dfmt
