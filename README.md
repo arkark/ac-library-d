@@ -20,7 +20,7 @@ Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
     - [ ] convolution
     - [ ] modint
 - Graphs
-    - [ ] dsu
+    - [x] dsu
     - [x] maxflow
     - [x] mincostflow
     - [x] scc
