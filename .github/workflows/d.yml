@@ -10,7 +10,7 @@ on:
 
 jobs:
   test-dmd-and-ldc:
-    name: Tests for DMD and LDC
+    name: Tests with DMD and LDC
     strategy:
       matrix:
         compiler:
