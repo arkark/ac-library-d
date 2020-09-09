@@ -28,8 +28,7 @@ static struct InternalScc {
 
     void addEdge(long fromV, long toV)
     in (0 <= fromV && fromV < _n)
-    in (0 <= toV && toV < _n)
-    body {
+    in (0 <= toV && toV < _n) {
       edges ~= tuple(fromV, Edge(toV));
     }
 

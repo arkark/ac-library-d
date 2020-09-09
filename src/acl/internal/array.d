@@ -39,34 +39,22 @@ static struct InternalArray {
     }
 
     ref T front() @property
-    in {
-      assert(!empty, "Attempting to get the front of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to get the front of an empty Array") {
       return this[0];
     }
 
     ref T front(T value) @property
-    in {
-      assert(!empty, "Attempting to assign to the front of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to assign to the front of an empty Array") {
       return this[0] = value;
     }
 
     ref T back() @property
-    in {
-      assert(!empty, "Attempting to get the back of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to get the back of an empty Array") {
       return this[$ - 1];
     }
 
     ref T back(T value) @property
-    in {
-      assert(!empty, "Attempting to assign to the back of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to assign to the back of an empty Array") {
       return this[$ - 1] = value;
     }
 
@@ -79,20 +67,14 @@ static struct InternalArray {
     }
 
     void removeFront()
-    in {
-      assert(!empty, "Attempting to remove the front of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to remove the front of an empty Array") {
       beginIndex++;
     }
 
     alias popFront = removeFront;
 
     void removeBack()
-    in {
-      assert(!empty, "Attempting to remove the back of an empty Array");
-    }
-    body {
+    in (!empty, "Attempting to remove the back of an empty Array") {
       size--;
       endIndex--;
     }
@@ -113,20 +95,14 @@ static struct InternalArray {
 
     // xs[index]
     ref T opIndex(size_t index)
-    in {
-      assert(0 <= index && index < length, "Access violation");
-    }
-    body {
+    in (0 <= index && index < length, "Access violation") {
       size_t _index = beginIndex + index;
       return data[_index];
     }
 
     // xs[indices[0] .. indices[1]]
     typeof(this) opIndex(size_t[2] indices)
-    in {
-      assert(0 <= indices[0] && indices[1] <= length, "Access violation");
-    }
-    body {
+    in (0 <= indices[0] && indices[1] <= length, "Access violation") {
       size_t newBeginIndex = beginIndex + indices[0];
       size_t newEndIndex = beginIndex + indices[1];
       size_t size = newEndIndex;
@@ -140,20 +116,14 @@ static struct InternalArray {
 
     // xs[index] = value
     ref T opIndexAssign(T value, size_t index)
-    in {
-      assert(0 <= index && index < length, "Access violation");
-    }
-    body {
+    in (0 <= index && index < length, "Access violation") {
       size_t _index = index - beginIndex;
       return data[_index] = value;
     }
 
     // xs[indices[0] .. indices[1]] = value
     typeof(this) opIndexAssign(T value, size_t[2] indices)
-    in {
-      assert(0 <= indices[0] && indices[1] <= length, "Access violation");
-    }
-    body {
+    in (0 <= indices[0] && indices[1] <= length, "Access violation") {
       size_t _beginIndex = beginIndex + indices[0];
       size_t _endIndex = beginIndex + indices[1];
       data[_beginIndex .. _endIndex] = value;
@@ -168,10 +138,7 @@ static struct InternalArray {
 
     // xs[indices[0] .. indices[1]] op= value
     typeof(this) opIndexOpAssign(string op)(T value, size_t[2] indices)
-    in {
-      assert(0 <= indices[0] && indices[1] <= length, "Access violation");
-    }
-    body {
+    in (0 <= indices[0] && indices[1] <= length, "Access violation") {
       size_t _beginIndex = beginIndex + indices[0];
       size_t _endIndex = beginIndex + indices[1];
       mixin(q{
@@ -195,10 +162,7 @@ static struct InternalArray {
 
     // i..j
     size_t[2] opSlice(size_t dim : 0)(size_t i, size_t j)
-    in {
-      assert(0 <= i && j <= length, "Access violation");
-    }
-    body {
+    in (0 <= i && j <= length, "Access violation") {
       return [i, j];
     }
 

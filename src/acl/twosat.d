@@ -22,8 +22,7 @@ public:
   // amortized O(1)
   void addClause(long i, bool f, long j, bool g)
   in (0 <= i && i < _n)
-  in (0 <= j && j < _n)
-  body {
+  in (0 <= j && j < _n) {
     scc.addEdge(2 * i + (f ? 0 : 1), 2 * j + (g ? 1 : 0));
     scc.addEdge(2 * j + (g ? 0 : 1), 2 * i + (f ? 1 : 0));
   }
