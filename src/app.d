@@ -9,7 +9,7 @@ import core.stdc.stdlib : exit;
 
 void main(string[] args) {
   if (args.length != 2) {
-    "Error: Wrong number of argument number".error.writeln;
+    "Error: Wrong number of arguments".error.writeln;
     showUsage();
     exit(1);
   }
