@@ -30,7 +30,7 @@ Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
     - [ ] internal math
     - ~~[ ] internal queue~~ (unnecessary)
     - [x] internal scc
-    - [ ] internal type traits
+    - ~~[ ] internal type traits~~ (unnecessary)
     - [x] internal array (not in ac-library)
 
 ## Commands
