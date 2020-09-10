@@ -11,7 +11,7 @@ An [ac-library](https://github.com/atcoder/ac-library) implementation in D langu
 Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
 
 - Data Structures
-    - [ ] fenwicktree
+    - [x] fenwicktree
     - [ ] segtree
     - [ ] lazysegtree
     - [ ] string
