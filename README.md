@@ -6,7 +6,7 @@
 
 :construction: WIP :construction:
 
-An [ac-library](https://atcoder.jp/posts/517) implementation in D language.
+An [ac-library](https://github.com/atcoder/ac-library) implementation in D language.
 
 Bundled files are [here](https://github.com/arkark/ac-library-d/tree/bundle) :)
 
@@ -57,4 +57,4 @@ $ make format
 
 ## Links
 
-- https://atcoder.jp/posts/517
+- Official repository: https://github.com/atcoder/ac-library
